@@ -348,7 +348,7 @@ export const projects: Project[] = [
     category: "Series",
     client: "Soklin Pewangi / Temata Studios",
     role: "Clapper",
-    description: "Mini series 3 episode untuk Soklin Pewangi, menonjolkan momen keseharian rumah tangga dengan sentuhan storytelling ringan. Ditayangkan di Instagram.",
+    description: "Mini series 4 episode untuk Soklin Pewangi, menonjolkan momen keseharian rumah tangga dengan sentuhan storytelling ringan. Ditayangkan di Instagram.",
     posterUrl: "/assets/logo-brand/SoKlin_Pewangi.png",
     previewVideoUrl: "/assets/projects/soklin-pewangi-temata-studios/preview_15s.mp4",
     externalUrl: "https://www.instagram.com/reel/DbxtMx3h1_Z/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==",
@@ -360,6 +360,7 @@ export const projects: Project[] = [
       { platform: "instagram", url: "https://www.instagram.com/reel/DbxtMx3h1_Z/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==", label: "Eps 1 (IG Reel)" },
       { platform: "instagram", url: "https://www.instagram.com/reel/DcDn6myh2dI/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==", label: "Eps 2 (IG Reel)" },
       { platform: "instagram", url: "https://www.instagram.com/reel/DcVwXJzhZRW/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==", label: "Eps 3 (IG Reel)" },
+      { platform: "instagram", url: "https://www.instagram.com/reel/Dcnx7YChURv/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==", label: "Eps 4 (IG Reel)" },
     ],
   },
 
@@ -370,7 +371,7 @@ export const projects: Project[] = [
     category: "Series",
     client: "Royale by SoKlin / Temata Studios",
     role: "Clapper",
-    description: "Mini series 2 episode untuk lini produk premium Royale by SoKlin, dengan eksekusi visual elevated. Ditayangkan di Instagram.",
+    description: "Mini series 4 episode untuk lini produk premium Royale by SoKlin, dengan eksekusi visual elevated. Ditayangkan di Instagram.",
     posterUrl: "/assets/logo-brand/Royale_By_SoKlin.png",
     previewVideoUrl: "/assets/projects/royale-by-soklin-temata-studios/preview_15s.mp4",
     externalUrl: "https://www.instagram.com/reel/DcDu2_5jekB/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==",
@@ -381,6 +382,8 @@ export const projects: Project[] = [
     videos: [
       { platform: "instagram", url: "https://www.instagram.com/reel/DcDu2_5jekB/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==", label: "Eps 1 (IG Reel)" },
       { platform: "instagram", url: "https://www.instagram.com/reel/DcP0rDVAPfS/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==", label: "Eps 2 (IG Reel)" },
+      { platform: "instagram", url: "https://www.instagram.com/reel/DcvgaeEiPEz/?igsi=bWpsejMwMW5jMDNi", label: "Eps 3 (IG Reel)" },
+      { platform: "instagram", url: "https://www.instagram.com/reel/Dc8YW3VnAM0/?stkn=MXRqbG84ZDh3MjNwOQ==", label: "Eps 4 (IG Reel)" },
     ],
   },
 
