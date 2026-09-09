@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { fallbackCodingProjects, CodingProject } from '@/data/coding-projects';
-import { Github, ExternalLink, Code2 } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function RecentCodingSection() {
@@ -101,33 +101,29 @@ export default function RecentCodingSection() {
               className="group p-6 sm:p-7 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-[#C84B2F]/40 backdrop-blur-md transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1"
             >
               <div>
-                {/* Top Row: Language Tag & GitHub Icon */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 font-mono text-[11px] text-gray-300 font-medium">
-                      <Code2 className="w-3 h-3 text-[#C84B2F]" />
-                      <span>{project.language}</span>
-                    </span>
-                  </div>
-
+                {/* Project Name */}
+                {project.homepage ? (
                   <a
-                    href={project.html_url}
+                    href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`View ${project.name} repository`}
-                    className="text-gray-400 hover:text-white transition-colors p-1"
+                    className="inline-block group/link"
                   >
-                    <Github className="w-4 h-4" />
+                    <h3 
+                      className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors mb-2.5"
+                      style={{ fontFamily: 'var(--font-syne)' }}
+                    >
+                      {project.name}
+                    </h3>
                   </a>
-                </div>
-
-                {/* Project Name */}
-                <h3 
-                  className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors mb-2.5"
-                  style={{ fontFamily: 'var(--font-syne)' }}
-                >
-                  {project.name}
-                </h3>
+                ) : (
+                  <h3 
+                    className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors mb-2.5"
+                    style={{ fontFamily: 'var(--font-syne)' }}
+                  >
+                    {project.name}
+                  </h3>
+                )}
 
                 {/* Description */}
                 <p 
@@ -138,30 +134,20 @@ export default function RecentCodingSection() {
                 </p>
               </div>
 
-              {/* Bottom Actions: Repository Link & Live Demo */}
-              <div className="flex items-center gap-3 pt-4 border-t border-white/5 select-auto">
-                <a
-                  href={project.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-gray-300 hover:text-white uppercase tracking-wider font-semibold transition-colors"
-                >
-                  <span>Source Code</span>
-                  <ExternalLink className="w-3 h-3 text-[#C84B2F]" />
-                </a>
-
-                {project.homepage && (
+              {/* Bottom Action: Live Demo Only */}
+              {project.homepage && (
+                <div className="pt-4 border-t border-white/5 select-auto flex items-center justify-end mt-auto">
                   <a
                     href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#C84B2F] hover:text-[#d95d43] uppercase tracking-wider font-semibold transition-colors ml-auto"
+                    className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#C84B2F] hover:text-[#d95d43] uppercase tracking-wider font-semibold transition-colors"
                   >
                     <span>Live App</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
-                )}
-              </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
