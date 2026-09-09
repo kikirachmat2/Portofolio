@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { fallbackCodingProjects, CodingProject } from '@/data/coding-projects';
 
-export const revalidate = 60; // Cache for 60 seconds, then revalidate in the background
+export const revalidate = 30; // Cache on edge for 30 seconds, then revalidate in background
 
 export async function GET() {
   try {
@@ -89,7 +89,7 @@ export async function GET() {
 
     return NextResponse.json(projects, {
       headers: {
-        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        'Cache-Control': 'public, max-age=0, s-maxage=30, stale-while-revalidate=60',
       }
     });
   } catch (err) {

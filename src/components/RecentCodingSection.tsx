@@ -17,7 +17,7 @@ export default function RecentCodingSection() {
     async function fetchRepos() {
       try {
         setLoading(true);
-        const res = await fetch('/api/repos');
+        const res = await fetch('/api/repos', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {

@@ -10,6 +10,14 @@ export interface CodingProject {
 
 export const fallbackCodingProjects: CodingProject[] = [
   {
+    name: "CloseBook",
+    description: "Zero-budget, user-owned production & project management operating system. Connects directly to Google Drive & Sheets.",
+    language: "TypeScript",
+    html_url: "https://github.com/kikirachmat2/CloseBook",
+    homepage: "https://closebook-alpha.vercel.app",
+    tags: ["Production OS", "Google Ecosystem", "Next.js"]
+  },
+  {
     name: "Acong Chat",
     description: "A character-driven AI chat app featuring Acong, an interactive persona with multi-character group discussions, credit wallet, image analysis, and bilingual support.",
     language: "TypeScript",
