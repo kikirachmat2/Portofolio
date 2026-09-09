@@ -13,28 +13,11 @@ export default function RecentCodingSection() {
     async function fetchRepos() {
       try {
         setLoading(true);
-        const res = await fetch('https://api.github.com/users/kikirachmat2/repos?sort=updated&direction=desc&per_page=10');
+        const res = await fetch('/api/repos');
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data)) {
-            // Filter: exclude 'Portofolio' and forks
-            const valid = data.filter((r: any) => 
-              !r.fork && 
-              r.name.toLowerCase() !== 'portofolio' &&
-              r.name.toLowerCase() !== 'portfolio'
-            );
-
-            // Merge with curated details while preserving all curated projects like Acong Chat
-            const merged: CodingProject[] = fallbackCodingProjects.map(f => {
-              const matched = valid.find((r: any) => r.name.toLowerCase() === f.name.toLowerCase() || (f.name === 'Acong Chat' && r.name.toLowerCase() === 'acong-ai'));
-              return {
-                ...f,
-                homepage: f.homepage || matched?.homepage || null,
-                updated_at: matched?.updated_at || f.updated_at
-              };
-            });
-
-            setProjects(merged);
+          if (Array.isArray(data) && data.length > 0) {
+            setProjects(data);
           }
         }
       } catch (_) {
