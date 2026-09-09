@@ -13,7 +13,7 @@ export default function RecentCodingSection() {
     async function fetchRepos() {
       try {
         setLoading(true);
-        const res = await fetch('https://api.github.com/users/frahmat68-beep/repos?sort=updated&direction=desc&per_page=10');
+        const res = await fetch('https://api.github.com/users/kikirachmat2/repos?sort=updated&direction=desc&per_page=10');
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data)) {
@@ -24,23 +24,17 @@ export default function RecentCodingSection() {
               r.name.toLowerCase() !== 'portfolio'
             );
 
-            // Merge with curated details if descriptions are empty
-            const mapped: CodingProject[] = valid.map((r: any) => {
-              const fallback = fallbackCodingProjects.find(f => f.name.toLowerCase() === r.name.toLowerCase());
+            // Merge with curated details while preserving all curated projects like Acong Chat
+            const merged: CodingProject[] = fallbackCodingProjects.map(f => {
+              const matched = valid.find((r: any) => r.name.toLowerCase() === f.name.toLowerCase() || (f.name === 'Acong Chat' && r.name.toLowerCase() === 'acong-ai'));
               return {
-                name: r.name,
-                description: r.description || fallback?.description || 'Repository project by Fikri Mulya Rachmat.',
-                language: r.language || fallback?.language || 'Code',
-                html_url: r.html_url,
-                homepage: r.homepage || fallback?.homepage || null,
-                updated_at: r.updated_at,
-                tags: fallback?.tags || [r.language || 'Code']
+                ...f,
+                homepage: f.homepage || matched?.homepage || null,
+                updated_at: matched?.updated_at || f.updated_at
               };
             });
 
-            if (mapped.length > 0) {
-              setProjects(mapped.slice(0, 6));
-            }
+            setProjects(merged);
           }
         }
       } catch (_) {
