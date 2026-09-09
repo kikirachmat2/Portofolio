@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { fallbackCodingProjects, CodingProject } from '@/data/coding-projects';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function RecentCodingSection() {
@@ -95,29 +95,41 @@ export default function RecentCodingSection() {
               className="group p-6 sm:p-7 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-[#C84B2F]/40 backdrop-blur-md transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1"
             >
               <div>
-                {/* Project Name */}
-                {project.homepage ? (
-                  <a
-                    href={project.homepage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block group/link"
-                  >
+                {/* Top Row: Project Name & GitHub Icon */}
+                <div className="flex items-start justify-between gap-3 mb-2.5">
+                  {project.homepage ? (
+                    <a
+                      href={project.homepage}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block group/link"
+                    >
+                      <h3 
+                        className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors"
+                        style={{ fontFamily: 'var(--font-syne)' }}
+                      >
+                        {project.name}
+                      </h3>
+                    </a>
+                  ) : (
                     <h3 
-                      className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors mb-2.5"
+                      className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors"
                       style={{ fontFamily: 'var(--font-syne)' }}
                     >
                       {project.name}
                     </h3>
-                  </a>
-                ) : (
-                  <h3 
-                    className="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight group-hover:text-[#C84B2F] transition-colors mb-2.5"
-                    style={{ fontFamily: 'var(--font-syne)' }}
+                  )}
+
+                  <a
+                    href={project.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${project.name} repository`}
+                    className="text-gray-400 hover:text-white transition-colors p-1 flex-shrink-0"
                   >
-                    {project.name}
-                  </h3>
-                )}
+                    <Github className="w-4 h-4" />
+                  </a>
+                </div>
 
                 {/* Description */}
                 <p 
@@ -128,20 +140,30 @@ export default function RecentCodingSection() {
                 </p>
               </div>
 
-              {/* Bottom Action: Live Demo Only */}
-              {project.homepage && (
-                <div className="pt-4 border-t border-white/5 select-auto flex items-center justify-end mt-auto">
+              {/* Bottom Actions: Source Code & Live App */}
+              <div className="flex items-center gap-3 pt-4 border-t border-white/5 select-auto mt-auto">
+                <a
+                  href={project.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-gray-300 hover:text-white uppercase tracking-wider font-semibold transition-colors"
+                >
+                  <span>Source Code</span>
+                  <ExternalLink className="w-3 h-3 text-[#C84B2F]" />
+                </a>
+
+                {project.homepage && (
                   <a
                     href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#C84B2F] hover:text-[#d95d43] uppercase tracking-wider font-semibold transition-colors"
+                    className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-[#C84B2F] hover:text-[#d95d43] uppercase tracking-wider font-semibold transition-colors ml-auto"
                   >
                     <span>Live App</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
-                </div>
-              )}
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
