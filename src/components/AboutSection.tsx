@@ -44,7 +44,7 @@ export default function AboutSection() {
           >
             {/* Main Name Heading */}
             <h2
-              className="text-white font-display font-black uppercase tracking-tight sm:tracking-tighter leading-[0.95] mb-2 sm:mb-3"
+              className="text-white font-display font-black uppercase tracking-tight sm:tracking-tighter leading-[0.95] mb-6 sm:mb-8"
               style={{
                 fontFamily: 'var(--font-syne)',
                 fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)',
@@ -54,26 +54,21 @@ export default function AboutSection() {
               Fikri Mulya Rachmat
             </h2>
 
-            {/* Single Tagline & Location Line */}
-            <p className="font-mono text-xs sm:text-sm text-gray-400 font-medium mb-6 sm:mb-8">
-              Kiki Rachmat · Jakarta, Indonesia
-            </p>
-
-            {/* 3 Body Copy Paragraphs */}
+            {/* 3 Body Copy Paragraphs with Narrative Storytelling & Visual Anchor Highlights */}
             <div 
               className="space-y-4 sm:space-y-5 font-sans text-gray-300 text-sm sm:text-base md:text-[17px] leading-relaxed max-w-2xl"
               style={{ fontFamily: 'var(--font-space-grotesk)' }}
             >
               <p>
-                Fikri Mulya Rachmat, professionally known as Kiki Rachmat. Fresh graduate in Multimedia Engineering Technology with a 3.71 GPA.
+                <span className="text-amber-400 font-semibold">Fikri Mulya Rachmat</span> grew up drawn to sets, scripts, and the quiet chaos of a production day. That pull eventually turned into a path, professionally known today as <span className="text-amber-400 font-semibold">Kiki Rachmat</span>: a fresh graduate in <span className="text-cyan-300 font-medium">Multimedia Engineering Technology</span> with a <span className="text-amber-300 font-mono font-medium">3.71 GPA</span>, who spent the last few years learning how a story actually gets made, not just how it looks on screen.
               </p>
 
               <p>
-                My focus is production management: leading teams, budgets, and schedules across more than 45 productions as a Line Producer, Unit Production Manager, and Producer, spanning film, series, commercials, and music videos. I&apos;m equally drawn to the creative and technical side of video production itself, not just managing it from behind the scenes.
+                Across more than <span className="text-amber-400 font-semibold">45 productions</span>, spanning short films, series, commercials, and music videos, I&apos;ve worked as a <span className="text-white font-medium">Line Producer</span>, <span className="text-white font-medium">Unit Production Manager</span>, and <span className="text-white font-medium">Producer</span>: the person keeping <span className="text-neutral-100 font-medium">teams</span>, <span className="text-neutral-100 font-medium">budgets</span>, and <span className="text-neutral-100 font-medium">schedules</span> moving so the creative side can focus on the work itself. I care about that structure, but I&apos;m just as pulled toward the craft in front of the camera as the planning behind it.
               </p>
 
               <p>
-                I&apos;m also exploring how AI fits into my workflow, from video production to coding, including this website.
+                Lately, that curiosity has stretched into <span className="text-cyan-400 font-semibold">AI</span>, exploring how it speeds up a production workflow, and how it let me build this website myself through <span className="text-cyan-400 font-semibold">coding</span>. It&apos;s a new chapter I&apos;m still writing.
               </p>
             </div>
           </motion.div>
