@@ -72,9 +72,6 @@ export default function RecentCodingSection() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14 border-b border-white/10 pb-6 sm:pb-8"
         >
           <div>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C84B2F] font-semibold block mb-2">
-              // Technical Literacy &amp; Experiments
-            </span>
             <h2
               className="text-white font-display font-black uppercase leading-none tracking-tight sm:tracking-tighter"
               style={{

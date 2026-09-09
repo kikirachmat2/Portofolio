@@ -74,7 +74,7 @@ export default function Analytics() {
       }
     }, 90000);
 
-    // ─── 4. ZERO-INTRUSIVE CLICK TRACKER (WhatsApp, Mail, Projects) ───
+    // ─── 4. ZERO-INTRUSIVE CLICK TRACKER (Mail, Projects) ───
     const handleClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a, button');
       if (!target) return;
@@ -83,10 +83,7 @@ export default function Analytics() {
       const text = target.textContent?.trim() || '';
 
       if (typeof (window as any).clarity === 'function') {
-        if (href.includes('wa.me')) {
-          (window as any).clarity('event', 'click_whatsapp');
-          (window as any).clarity('set', 'Converted', 'WhatsApp_Contact');
-        } else if (href.startsWith('mailto:')) {
+        if (href.startsWith('mailto:')) {
           (window as any).clarity('event', 'click_email');
           (window as any).clarity('set', 'Converted', 'Email_Inquiry');
         } else if (href.includes('instagram.com')) {

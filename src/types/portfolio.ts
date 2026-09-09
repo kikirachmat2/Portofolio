@@ -69,7 +69,6 @@ export interface ProfileData {
   contact: {
     email: string;
     instagram: string;
-    whatsapp?: string;
   };
 }
 

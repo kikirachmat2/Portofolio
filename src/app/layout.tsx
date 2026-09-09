@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Kiki Rachmat',
-  description: 'Official portfolio of Kiki Rachmat — Film Producer, Line Producer, and UPM with 45 productions spanning narrative shorts, series, music videos, and commercial brand campaigns across Indonesia.',
+  description: 'Official portfolio of Kiki Rachmat. Film Producer, Line Producer, and UPM with 45 productions spanning narrative shorts, series, music videos, and commercial brand campaigns across Indonesia.',
   keywords: [
     'Kiki Rachmat', 'Film Producer Jakarta',
     'Line Producer Indonesia', 'Unit Production Manager',

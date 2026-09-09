@@ -15,7 +15,6 @@ export const profileData: ProfileData = {
   contact: {
     email: "kikirachmat214@gmail.com",
     instagram: "https://instagram.com/kikiirch",
-    whatsapp: "https://wa.me/6285156649015",
   }
 };
 
@@ -224,7 +223,7 @@ export const projects: Project[] = [
     category: "Commercial",
     client: "Ciputra CitraGarden City / Berimajinasi Ria",
     role: "Unit Production Manager",
-    description: "Konten promosi properti untuk klaster The Forestine, Ciputra CitraGarden City — menonjolkan konsep hunian asri lewat pendekatan sinematik. Ditayangkan di Instagram.",
+    description: "Konten promosi properti untuk klaster The Forestine, Ciputra CitraGarden City, menonjolkan konsep hunian asri lewat pendekatan sinematik. Ditayangkan di Instagram.",
     posterUrl: "/assets/logo-brand/Ciputra.png",
     previewVideoUrl: "/assets/projects/the-forestine-ciputra-citygarden-berimajinasi-ria/preview_15s.mp4",
     externalUrl: "https://www.instagram.com/reel/DUFqhCXEuee/?utm_source=ig_web_copy_link&igsi=MzRlODBiNWFlZA==",
@@ -305,7 +304,7 @@ export const projects: Project[] = [
     category: "Commercial",
     client: "Kopi Kenangan / Aman Studio",
     role: "Unit Production Manager",
-    description: "Brand film manifesto Kopi Kenangan — pendekatan naratif untuk menyampaikan nilai dan visi brand ke audiens yang lebih luas. Ditayangkan di YouTube.",
+    description: "Brand film manifesto Kopi Kenangan dengan pendekatan naratif untuk menyampaikan nilai dan visi brand ke audiens yang lebih luas. Ditayangkan di YouTube.",
     posterUrl: "/assets/logo-brand/Kopi_Kenangan.png",
     previewVideoUrl: "/assets/projects/manifesto-kopi-kenangan-aman-studio/preview_15s.mp4",
     externalUrl: "https://youtu.be/HAWMCxWKBgk?si=CDWKJHJYNtgYIdmJ",

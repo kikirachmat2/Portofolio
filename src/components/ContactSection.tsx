@@ -2,41 +2,15 @@
 
 import React from 'react';
 import { usePortfolio } from '@/context/PortfolioContext';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ContactSection() {
   const { data } = usePortfolio();
   const { profile } = data;
 
-  const marqueeText = "LET'S PRODUCE SOMETHING ICONIC — OPEN FOR NARRATIVE FILMS, COMMERCIALS & SERIES — GET IN TOUCH — ";
-
   return (
     <footer className="w-full relative bg-[#0A0A0A] text-[#F0ECE5] overflow-hidden" id="contact">
-      
-      {/* ─── 1. HIGH-IMPACT TRANSITION MARQUEE RIBBON ─── */}
-      <div className="w-full bg-[#111111] border-y border-white/10 py-3.5 sm:py-4 overflow-hidden select-none relative z-10">
-        <div className="flex overflow-x-hidden group">
-          <div className="flex gap-4 animate-marquee shrink-0 items-center">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="flex items-center gap-4 text-xs sm:text-sm font-mono tracking-widest uppercase text-gray-300 font-semibold whitespace-nowrap">
-                <span>{marqueeText}</span>
-                <Sparkles className="w-3.5 h-3.5 text-[#C84B2F] shrink-0 inline" />
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-4 animate-marquee shrink-0 items-center">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={`dup-${i}`} className="flex items-center gap-4 text-xs sm:text-sm font-mono tracking-widest uppercase text-gray-300 font-semibold whitespace-nowrap">
-                <span>{marqueeText}</span>
-                <Sparkles className="w-3.5 h-3.5 text-[#C84B2F] shrink-0 inline" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ─── 2. CINEMATIC AMBIENT VIDEO HORIZON (Matches HeroBio) ─── */}
+      {/* Cinematic ambient video horizon */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20">
         <video
           autoPlay
@@ -54,10 +28,8 @@ export default function ContactSection() {
       {/* Ambient glowing radial orb in the footer */}
       <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#C84B2F]/10 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* ─── 3. MAIN FOOTER CONTENT ─── */}
+      {/* Main Footer Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16 w-full">
-
-        {/* Main Minimalist Header Mirroring HeroBio Aesthetic with Kinetic Stagger */}
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +37,7 @@ export default function ContactSection() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="pb-12 sm:pb-16 border-b border-white/10"
         >
-          <div className="flex flex-col mb-10 sm:mb-14 select-none">
+          <div className="flex flex-col mb-8 sm:mb-12 select-none">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -98,55 +70,29 @@ export default function ContactSection() {
             </motion.span>
           </div>
 
-          {/* Luxury Interactive Glass Contact Cards (Email, WhatsApp, Instagram) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl">
-            {/* Email Card */}
-            <a
-              href={`mailto:${profile.contact.email}`}
-              className="group p-4 sm:p-5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#C84B2F]/50 backdrop-blur-md transition-all duration-300 flex flex-col justify-between min-h-[95px] shadow-sm hover:shadow-xl hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-gray-500 group-hover:text-gray-300">
-                <span>Direct Mail</span>
-                <ArrowUpRight className="w-4 h-4 text-[#C84B2F] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-              <span className="font-mono text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium truncate pt-2">
-                {profile.contact.email}
-              </span>
-            </a>
-
-            {/* WhatsApp Card */}
-            {profile.contact.whatsapp && (
+          {/* Understated, Clean Text Links (Email and Instagram) */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-xs sm:text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <span className="text-gray-600 uppercase tracking-widest text-[10px]">Email</span>
               <a
-                href={profile.contact.whatsapp}
+                href={`mailto:${profile.contact.email}`}
+                className="text-gray-200 hover:text-white transition-colors underline-offset-4 hover:underline"
+              >
+                {profile.contact.email}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-gray-600 uppercase tracking-widest text-[10px]">Instagram</span>
+              <a
+                href={profile.contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-4 sm:p-5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-emerald-500/50 backdrop-blur-md transition-all duration-300 flex flex-col justify-between min-h-[95px] shadow-sm hover:shadow-xl hover:-translate-y-1"
+                className="text-gray-200 hover:text-white transition-colors underline-offset-4 hover:underline"
               >
-                <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-gray-500 group-hover:text-gray-300">
-                  <span>WhatsApp</span>
-                  <ArrowUpRight className="w-4 h-4 text-emerald-400 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-                <span className="font-mono text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium truncate pt-2">
-                  +62 851-5664-9015
-                </span>
-              </a>
-            )}
-
-            {/* Instagram Card */}
-            <a
-              href={profile.contact.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-4 sm:p-5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-purple-500/50 backdrop-blur-md transition-all duration-300 flex flex-col justify-between min-h-[95px] shadow-sm hover:shadow-xl hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-gray-500 group-hover:text-gray-300">
-                <span>Instagram</span>
-                <ArrowUpRight className="w-4 h-4 text-purple-400 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-              <span className="font-mono text-xs sm:text-sm text-gray-200 group-hover:text-white font-medium truncate pt-2">
                 @kikiirch
-              </span>
-            </a>
+              </a>
+            </div>
           </div>
         </motion.div>
 
@@ -165,7 +111,6 @@ export default function ContactSection() {
             Jakarta, Indonesia
           </div>
         </motion.div>
-
       </div>
     </footer>
   );
