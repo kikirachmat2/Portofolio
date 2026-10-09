@@ -12,6 +12,7 @@ const CATEGORIES = [
   { id: 'ALL', label: 'All Works' },
   { id: 'FILM', label: 'Films', types: ['Short Film', 'Feature Film'] },
   { id: 'SERIES', label: 'Series', types: ['Series', 'Mini Series'] },
+  { id: 'INFOTAINMENT', label: 'Infotainment', types: ['Infotainment'] },
   { id: 'COMMERCIAL', label: 'Commercial & MVs', types: ['Commercial', 'Campaign', 'Music Video', 'Company Profile'] },
 ];
 

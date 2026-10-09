@@ -30,7 +30,7 @@ export const fallbackCodingProjects: CodingProject[] = [
     description: "Multi-outlet QR ordering, cashier, kitchen, and point-of-sale management system built for Piyoh Kopi.",
     language: "PHP",
     html_url: "https://github.com/kikirachmat2/PiyohPOS",
-    homepage: "http://213.35.118.26/scan/RUthTmsrODba2PYt0WO7l4p5vZgvuDbP",
+    homepage: null,
     tags: ["POS System", "PHP", "F&B Tech"]
   },
   {
@@ -38,7 +38,7 @@ export const fallbackCodingProjects: CodingProject[] = [
     description: "Digital web showcase and brand portal for the Piyoh Kopi coffee shop brand.",
     language: "PHP",
     html_url: "https://github.com/kikirachmat2/PiyohWeb",
-    homepage: "http://213.35.118.26",
+    homepage: null,
     tags: ["Brand Portal", "PHP", "Web"]
   },
   {

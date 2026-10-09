@@ -44,6 +44,7 @@ export type FilmographyType =
   | 'Short Film' 
   | 'Feature Film'
   | 'Series' 
+  | 'Infotainment'
   | 'Mini Series'
   | 'Music Video' 
   | 'Commercial' 
