@@ -11,6 +11,7 @@ const CATEGORIES: { id: string; label: string; filterTypes?: string[] }[] = [
   { id: 'all', label: 'All Works' },
   { id: 'films', label: 'Films', filterTypes: ['Feature Film', 'Short Film'] },
   { id: 'Series', label: 'Series', filterTypes: ['Series'] },
+  { id: 'Infotainment', label: 'Infotainment', filterTypes: ['Infotainment'] },
   { id: 'Commercial', label: 'Commercial', filterTypes: ['Commercial'] },
   { id: 'Music Video', label: 'Music Videos', filterTypes: ['Music Video'] },
 ];
@@ -24,6 +25,7 @@ function ProjectCard({ project, idx, isHero, onOpenModal }: {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -34,12 +36,13 @@ function ProjectCard({ project, idx, isHero, onOpenModal }: {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
           video.play().catch(() => {});
         } else {
           video.pause();
         }
       },
-      { rootMargin: '300px 0px', threshold: 0.05 }
+      { rootMargin: '100px 0px', threshold: 0.05 }
     );
 
     if (cardRef.current) {
@@ -92,15 +95,18 @@ function ProjectCard({ project, idx, isHero, onOpenModal }: {
             {/* Ultra-Fast Streamed Video Loop */}
             <video
               ref={videoRef}
-              src={project.previewVideoUrl}
+              src={shouldLoadVideo ? project.previewVideoUrl : undefined}
               autoPlay
               muted
               loop
               playsInline
-              preload={idx < 4 ? "auto" : "metadata"}
+              preload="metadata"
               poster={project.posterUrl}
               onCanPlay={() => setIsVideoLoaded(true)}
               onPlaying={() => setIsVideoLoaded(true)}
+              onTimeUpdate={(event) => {
+                if (event.currentTarget.currentTime >= 15) event.currentTarget.currentTime = 0;
+              }}
               className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>

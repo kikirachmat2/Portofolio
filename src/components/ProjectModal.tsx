@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Project } from '@/types/portfolio';
-import { X, Images, ChevronLeft, ChevronRight, ExternalLink, Play, Film, Sparkles } from 'lucide-react';
+import { X, Images, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProjectModalProps {
@@ -18,7 +18,6 @@ function getYouTubeId(url: string): string | null {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeStillIdx, setActiveStillIdx] = useState<number | null>(null);
-  const [hoveredVideo, setHoveredVideo] = useState<{ id: string; index: number } | null>(null);
   const [activeVideoEmbed, setActiveVideoEmbed] = useState<string | null>(null);
 
   // Close on escape key
@@ -36,7 +35,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
       // Reset video state when a new project is opened
-      setHoveredVideo(null);
       setActiveVideoEmbed(null);
     }
     return () => {
@@ -97,7 +95,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 autoPlay
                 loop
                 playsInline
+                preload="metadata"
                 poster={project.posterUrl}
+                onTimeUpdate={(event) => {
+                  if (event.currentTarget.currentTime >= 15) event.currentTarget.currentTime = 0;
+                }}
                 className="w-full h-full object-cover"
               />
             ) : project.posterUrl ? (
@@ -140,7 +142,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2.5 text-xs font-mono text-gray-400">
                 {project.client && (
                   <span>
-                    Client / PH: <strong className="text-gray-200">{project.client}</strong>
+                    {project.slug === 'insert-reguler' ? 'TV Networks' : 'Client / PH'}: <strong className="text-gray-200">{project.client}</strong>
                   </span>
                 )}
                 {project.role && (
@@ -174,74 +176,46 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </button>
                   )}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-2 sm:gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                   {project.videos.map((video, i) => {
                     const ytId = getYouTubeId(video.url);
                     const isCurrentEmbed = activeVideoEmbed === ytId;
                     return (
                       <div
                         key={i}
-                        className="relative group/btn flex items-center"
-                        onMouseEnter={() => ytId && setHoveredVideo({ id: ytId, index: i })}
-                        onMouseLeave={() => setHoveredVideo(null)}
+                        className="min-w-0"
                       >
-                        {/* Direct Watch Link Button */}
-                        <a
-                          href={video.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex flex-1 md:flex-initial items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-l-xl md:rounded-xl bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md shadow-[#C84B2F]/20"
-                        >
-                          <Play className="w-3.5 h-3.5 fill-current shrink-0" />
-                          <span className="truncate max-w-[210px] sm:max-w-[250px]">{video.label}</span>
-                          <ExternalLink className="w-3 h-3 opacity-60 shrink-0 ml-auto md:ml-0" />
-                        </a>
-
-                        {/* Inline Play In Modal Toggle Button (if YouTube) */}
-                        {ytId && (
+                        {ytId ? (
                           <button
                             type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setActiveVideoEmbed(isCurrentEmbed ? null : ytId);
-                            }}
-                            className={`px-2.5 py-3 sm:py-2.5 rounded-r-xl md:rounded-lg md:ml-1 text-xs font-mono font-bold transition-all border ${
+                            onClick={() => setActiveVideoEmbed(isCurrentEmbed ? null : ytId)}
+                            className={`w-full inline-flex items-center justify-between gap-2 px-4 py-3 sm:py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md ${
                               isCurrentEmbed
-                                ? 'bg-white text-black border-white'
-                                : 'bg-black/60 hover:bg-black text-gray-300 hover:text-white border-white/20'
+                                ? 'bg-white text-black'
+                                : 'bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white shadow-[#C84B2F]/20'
                             }`}
-                            title={isCurrentEmbed ? 'Close In-Modal Player' : 'Play In-Modal'}
+                            aria-label={`${isCurrentEmbed ? 'Close' : 'Preview'} ${video.label}`}
                           >
-                            <Film className="w-3.5 h-3.5" />
+                            <span className="inline-flex min-w-0 items-center gap-2">
+                              <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+                              <span className="truncate">{video.label}</span>
+                            </span>
+                            <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
                           </button>
+                        ) : (
+                          <a
+                            href={video.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full inline-flex items-center justify-between gap-2 px-4 py-3 sm:py-2.5 rounded-xl bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md shadow-[#C84B2F]/20"
+                          >
+                            <span className="inline-flex min-w-0 items-center gap-2">
+                              <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+                              <span className="truncate">{video.label}</span>
+                            </span>
+                            <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                          </a>
                         )}
-
-                        {/* Floating Live Video Tooltip Preview on Desktop Hover */}
-                        <AnimatePresence>
-                          {hoveredVideo?.index === i && hoveredVideo?.id && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 6, scale: 0.95 }}
-                              transition={{ duration: 0.2 }}
-                              className="hidden sm:block absolute bottom-full left-0 mb-3 z-50 w-72 md:w-80 rounded-xl overflow-hidden bg-black/95 border border-white/20 shadow-2xl pointer-events-none"
-                            >
-                              <div className="relative aspect-video w-full bg-black">
-                                <iframe
-                                  src={`https://www.youtube-nocookie.com/embed/${hoveredVideo.id}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${hoveredVideo.id}`}
-                                  title="Live Video Preview"
-                                  className="w-full h-full border-0 pointer-events-none"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                />
-                              </div>
-                              <div className="p-2.5 bg-black/90 flex items-center justify-between text-[10px] font-mono text-gray-300 border-t border-white/10">
-                                <span className="truncate font-semibold text-white">{video.label}</span>
-                                <span className="text-[#C84B2F] shrink-0 font-bold ml-2">LIVE PREVIEW</span>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
                       </div>
                     );
                   })}

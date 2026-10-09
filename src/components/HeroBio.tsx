@@ -14,10 +14,13 @@ export default function HeroBio() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/assets/projects/puma-x-mclaren-aman-studio/Built_for_the_grid_Styled.jpg"
           className="w-full h-full object-cover filter contrast-125 scale-105"
           src="/assets/projects/puma-x-mclaren-aman-studio/preview_15s.mp4"
+          onTimeUpdate={(event) => {
+            if (event.currentTarget.currentTime >= 15) event.currentTarget.currentTime = 0;
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/75 to-[#0A0A0A]/50" />
       </div>
