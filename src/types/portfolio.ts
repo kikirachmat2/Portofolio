@@ -37,7 +37,7 @@ export interface BrandLogo {
   id: string;
   name: string;
   logoUrl: string;
-  category: 'ph' | 'brand';
+  category: 'ph' | 'brand' | 'tv';
 }
 
 export type FilmographyType = 

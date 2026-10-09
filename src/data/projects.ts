@@ -39,6 +39,8 @@ export const brandLogos: BrandLogo[] = [
   { id: "brand-10", name: "My Love", logoUrl: "/assets/logo-brand/my_love.png", category: "brand" },
   { id: "brand-11", name: "Jakarta Aquarium & Safari", logoUrl: "/assets/logo-brand/Jakarta_Aquarium_Safari.png", category: "brand" },
   { id: "brand-12", name: "Azko", logoUrl: "/assets/logo-brand/Azko.png", category: "brand" },
+  // Television Networks
+  { id: "tv-1", name: "TRANS TV", logoUrl: "/assets/logo-tv/Trans_TV_2013.png", category: "tv" },
 ];
 
 export const projects: Project[] = [
@@ -80,7 +82,59 @@ export const projects: Project[] = [
     ],
   },
 
-  // 2. Anonymous Love By Rejoice
+  // 2. Insert Trans TV Reguler
+  {
+    slug: "insert-transtv-reguler",
+    title: "Insert Trans TV Reguler",
+    category: "Series",
+    client: "TRANS TV",
+    role: "Production Team / Unit",
+    description: "Program infotainment harian unggulan TRANS TV (Insert Pagi, Siang, Today & Story) yang menyajikan liputan eksklusif selebritas, investigasi mendalam, dan dinamika industri hiburan tanah air secara aktual dan terpercaya.",
+    posterUrl: "/assets/projects/insert-transtv-reguler/INSERT.png",
+    previewVideoUrl: "/assets/projects/insert-transtv-reguler/YTDown.com_YouTube_Media_92hW5Bcn1hI_Hampir-Usia-46-Tahun-Samuel-Rizal-Bingung-Ditanya-Tips-Awet-Muda_001_1080p.mp4",
+    externalUrl: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm",
+    externalPlatform: "youtube",
+    featured: true,
+    order: 2,
+    tags: ["TRANS TV", "Insert", "Infotainment", "Broadcast", "Series"],
+    gallery: [
+      "/assets/projects/insert-transtv-reguler/INSERT.png",
+    ],
+    videos: [
+      {
+        platform: "youtube",
+        url: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm",
+        label: "Samuel Rizal - Tips Awet Muda"
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/e2FZ9gdVWOw?si=3QTXv-FMc-CJG0bD",
+        label: "Jennifer Coppen & Justin Hubner | INSERT SIANG"
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/fDJRxYiMpIw?si=Eqg1_sEg7pYCOmXN",
+        label: "Fitri Salhuteru Buka Suara | INSERT TODAY"
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/aqdK05NWh8U?si=CTdt9inKpmlxiwBZ",
+        label: "Soimah Beri Dukungan | INSERT STORY"
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/xW-ILn0Sy2U?si=TbfQh6CK2bvZBzzf",
+        label: "Billy Syahputra Terancam Penjara | INSERT SIANG"
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/tTNvnORD4Cg?si=DL7h_QbCLilD93V5",
+        label: "Thariq Halilintar & Aaliyah Massaid | INSERT SIANG"
+      },
+    ],
+  },
+
+  // 3. Anonymous Love By Rejoice
   {
     slug: "love-by-rejoice",
     title: "Anonymous Love By Rejoice",
@@ -93,7 +147,7 @@ export const projects: Project[] = [
     externalUrl: "https://www.tiktok.com/@leopicturesofficial/video/7481234654016851255?is_from_webapp=1&sender_device=pc&web_id=7646723520642876929",
     externalPlatform: "tiktok",
     featured: true,
-    order: 2,
+    order: 3,
     tags: ["Mini Series", "TikTok", "Rejoice", "Leo Pictures"],
     gallery: [
       "/assets/projects/anonymous-love-by-rejoice-leo-pictures/WhatsApp_Image_2025-03-14_at_0.jpg",
@@ -619,6 +673,7 @@ export const filmographyData: FilmographyEntry[] = [
   { id: "f-19", title: "My Love Bedcover", role: "Unit Production Manager", productionHouse: "Berimajinasi Ria", type: "Commercial" },
   { id: "f-20", title: "The Forestine - Ciputra CitraGarden City", role: "Unit Production Manager", productionHouse: "Berimajinasi Ria", type: "Commercial" },
   { id: "f-21", title: "Puma x McLaren", role: "Unit Production Manager", productionHouse: "Aman Studio", type: "Campaign" },
+  { id: "f-21b", title: "Insert Trans TV Reguler", role: "Production Team / Unit", productionHouse: "TRANS TV", type: "Series" },
   // === PRODUCTION ASSISTANT ===
   { id: "f-22", title: "Terikat, Tak Senyawa", role: "Production Assistant", productionHouse: "SAE Indonesia", type: "Short Film" },
   { id: "f-23", title: "Sebelah Mata Eike", role: "Production Assistant", productionHouse: "SAE Indonesia", type: "Short Film" },

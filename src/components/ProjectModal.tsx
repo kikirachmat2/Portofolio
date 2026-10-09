@@ -10,8 +10,16 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+function getYouTubeId(url: string): string | null {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]{11})/);
+  return match ? match[1] : null;
+}
+
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeStillIdx, setActiveStillIdx] = useState<number | null>(null);
+  const [hoveredVideo, setHoveredVideo] = useState<{ id: string; index: number } | null>(null);
+  const [activeVideoEmbed, setActiveVideoEmbed] = useState<string | null>(null);
 
   // Close on escape key
   useEffect(() => {
@@ -67,9 +75,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Scrollable Content Container */}
         <div className="overflow-y-auto overflow-x-hidden p-4 sm:p-7 md:p-8 space-y-6 touch-scroll">
           
-          {/* Hero Media Layer: Video Loop or Poster */}
+          {/* Hero Media Layer: Video Loop, Active Online Video, or Poster */}
           <div className="w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/80 relative border border-white/10 shadow-inner">
-            {project.previewVideoUrl ? (
+            {activeVideoEmbed ? (
+              <div className="relative w-full h-full bg-black">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideoEmbed}?autoplay=1&modestbranding=1&rel=0`}
+                  title="Online Video Player"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : project.previewVideoUrl ? (
               <video
                 src={project.previewVideoUrl}
                 muted
@@ -137,26 +155,93 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </p>
             )}
 
-            {/* External Video Links CTA Buttons */}
+            {/* External Video Links CTA Buttons with Live Hover Preview */}
             {project.videos && project.videos.length > 0 ? (
               <div className="space-y-2.5 pt-1">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-gray-400 font-bold">
-                  WATCH ONLINE ({project.videos.length} LINKS)
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-2 sm:gap-2.5">
-                  {project.videos.map((video, i) => (
-                    <a
-                      key={i}
-                      href={video.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-xl bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md shadow-[#C84B2F]/20"
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] font-mono uppercase tracking-widest text-gray-400 font-bold">
+                    WATCH ONLINE ({project.videos.length} LINKS)
+                  </p>
+                  {activeVideoEmbed && (
+                    <button
+                      onClick={() => setActiveVideoEmbed(null)}
+                      className="text-[10px] font-mono text-[#C84B2F] hover:underline uppercase tracking-wider"
                     >
-                      <Play className="w-3.5 h-3.5 fill-current shrink-0" />
-                      <span className="truncate">{video.label}</span>
-                      <ExternalLink className="w-3 h-3 opacity-60 shrink-0 ml-auto md:ml-0" />
-                    </a>
-                  ))}
+                      Reset to Default Preview
+                    </button>
+                  )}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-2 sm:gap-2.5">
+                  {project.videos.map((video, i) => {
+                    const ytId = getYouTubeId(video.url);
+                    const isCurrentEmbed = activeVideoEmbed === ytId;
+                    return (
+                      <div
+                        key={i}
+                        className="relative group/btn flex items-center"
+                        onMouseEnter={() => ytId && setHoveredVideo({ id: ytId, index: i })}
+                        onMouseLeave={() => setHoveredVideo(null)}
+                      >
+                        {/* Direct Watch Link Button */}
+                        <a
+                          href={video.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex flex-1 md:flex-initial items-center justify-center gap-2 px-4 py-3 sm:py-2.5 rounded-l-xl md:rounded-xl bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md shadow-[#C84B2F]/20"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+                          <span className="truncate max-w-[210px] sm:max-w-[250px]">{video.label}</span>
+                          <ExternalLink className="w-3 h-3 opacity-60 shrink-0 ml-auto md:ml-0" />
+                        </a>
+
+                        {/* Inline Play In Modal Toggle Button (if YouTube) */}
+                        {ytId && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setActiveVideoEmbed(isCurrentEmbed ? null : ytId);
+                            }}
+                            className={`px-2.5 py-3 sm:py-2.5 rounded-r-xl md:rounded-lg md:ml-1 text-xs font-mono font-bold transition-all border ${
+                              isCurrentEmbed
+                                ? 'bg-white text-black border-white'
+                                : 'bg-black/60 hover:bg-black text-gray-300 hover:text-white border-white/20'
+                            }`}
+                            title={isCurrentEmbed ? 'Close In-Modal Player' : 'Play In-Modal'}
+                          >
+                            <Film className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+
+                        {/* Floating Live Video Tooltip Preview on Desktop Hover */}
+                        <AnimatePresence>
+                          {hoveredVideo?.index === i && hoveredVideo?.id && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 6, scale: 0.95 }}
+                              transition={{ duration: 0.2 }}
+                              className="hidden sm:block absolute bottom-full left-0 mb-3 z-50 w-72 md:w-80 rounded-xl overflow-hidden bg-black/95 border border-white/20 shadow-2xl pointer-events-none"
+                            >
+                              <div className="relative aspect-video w-full bg-black">
+                                <iframe
+                                  src={`https://www.youtube-nocookie.com/embed/${hoveredVideo.id}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${hoveredVideo.id}`}
+                                  title="Live Video Preview"
+                                  className="w-full h-full border-0 pointer-events-none"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                />
+                              </div>
+                              <div className="p-2.5 bg-black/90 flex items-center justify-between text-[10px] font-mono text-gray-300 border-t border-white/10">
+                                <span className="truncate font-semibold text-white">{video.label}</span>
+                                <span className="text-[#C84B2F] shrink-0 font-bold ml-2">LIVE PREVIEW</span>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ) : project.externalUrl ? (
