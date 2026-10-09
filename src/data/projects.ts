@@ -82,14 +82,14 @@ export const projects: Project[] = [
     ],
   },
 
-  // 2. Insert Trans TV Reguler
+  // 2. Insert Reguler
   {
-    slug: "insert-transtv-reguler",
-    title: "Insert Trans TV Reguler",
+    slug: "insert-reguler",
+    title: "Insert Reguler",
     category: "Series",
     client: "TRANS TV",
     role: "Production Team / Unit",
-    description: "Program infotainment harian unggulan TRANS TV (Insert Pagi, Siang, Today & Story) yang menyajikan liputan eksklusif selebritas, investigasi mendalam, dan dinamika industri hiburan tanah air secara aktual dan terpercaya.",
+    description: "Program infotainment harian unggulan TRANS TV yang menghadirkan liputan eksklusif selebritas dan dinamika industri hiburan tanah air. Tayang reguler dengan format Insert Pagi, Siang, Today, dan Story.",
     posterUrl: "/assets/projects/insert-transtv-reguler/INSERT.png",
     previewVideoUrl: "/assets/projects/insert-transtv-reguler/YTDown.com_YouTube_Media_92hW5Bcn1hI_Hampir-Usia-46-Tahun-Samuel-Rizal-Bingung-Ditanya-Tips-Awet-Muda_001_1080p.mp4",
     externalUrl: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm",
@@ -101,36 +101,12 @@ export const projects: Project[] = [
       "/assets/projects/insert-transtv-reguler/INSERT.png",
     ],
     videos: [
-      {
-        platform: "youtube",
-        url: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm",
-        label: "Samuel Rizal - Tips Awet Muda"
-      },
-      {
-        platform: "youtube",
-        url: "https://youtu.be/e2FZ9gdVWOw?si=3QTXv-FMc-CJG0bD",
-        label: "Jennifer Coppen & Justin Hubner | INSERT SIANG"
-      },
-      {
-        platform: "youtube",
-        url: "https://youtu.be/fDJRxYiMpIw?si=Eqg1_sEg7pYCOmXN",
-        label: "Fitri Salhuteru Buka Suara | INSERT TODAY"
-      },
-      {
-        platform: "youtube",
-        url: "https://youtu.be/aqdK05NWh8U?si=CTdt9inKpmlxiwBZ",
-        label: "Soimah Beri Dukungan | INSERT STORY"
-      },
-      {
-        platform: "youtube",
-        url: "https://youtu.be/xW-ILn0Sy2U?si=TbfQh6CK2bvZBzzf",
-        label: "Billy Syahputra Terancam Penjara | INSERT SIANG"
-      },
-      {
-        platform: "youtube",
-        url: "https://youtu.be/tTNvnORD4Cg?si=DL7h_QbCLilD93V5",
-        label: "Thariq Halilintar & Aaliyah Massaid | INSERT SIANG"
-      },
+      { platform: "youtube", url: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm", label: "Samuel Rizal | INSERT SIANG" },
+      { platform: "youtube", url: "https://youtu.be/e2FZ9gdVWOw?si=3QTXv-FMc-CJG0bD", label: "Jennifer Coppen & Justin Hubner | INSERT SIANG" },
+      { platform: "youtube", url: "https://youtu.be/fDJRxYiMpIw?si=Eqg1_sEg7pYCOmXN", label: "Fitri Salhuteru | INSERT TODAY" },
+      { platform: "youtube", url: "https://youtu.be/aqdK05NWh8U?si=CTdt9inKpmlxiwBZ", label: "Soimah | INSERT STORY" },
+      { platform: "youtube", url: "https://youtu.be/xW-ILn0Sy2U?si=TbfQh6CK2bvZBzzf", label: "Billy Syahputra | INSERT SIANG" },
+      { platform: "youtube", url: "https://youtu.be/tTNvnORD4Cg?si=DL7h_QbCLilD93V5", label: "Thariq Halilintar & Aaliyah Massaid | INSERT SIANG" },
     ],
   },
 
@@ -170,7 +146,7 @@ export const projects: Project[] = [
     ],
   },
 
-  // 3. Reku Relaunch Pack
+  // 4. Reku Relaunch Pack
   {
     slug: "reku-relaunch-pack",
     title: "Reku Relaunch Pack",
@@ -673,7 +649,7 @@ export const filmographyData: FilmographyEntry[] = [
   { id: "f-19", title: "My Love Bedcover", role: "Unit Production Manager", productionHouse: "Berimajinasi Ria", type: "Commercial" },
   { id: "f-20", title: "The Forestine - Ciputra CitraGarden City", role: "Unit Production Manager", productionHouse: "Berimajinasi Ria", type: "Commercial" },
   { id: "f-21", title: "Puma x McLaren", role: "Unit Production Manager", productionHouse: "Aman Studio", type: "Campaign" },
-  { id: "f-21b", title: "Insert Trans TV Reguler", role: "Production Team / Unit", productionHouse: "TRANS TV", type: "Series" },
+  { id: "f-21b", title: "Insert Reguler", role: "Production Team / Unit", productionHouse: "TRANS TV", type: "Series" },
   // === PRODUCTION ASSISTANT ===
   { id: "f-22", title: "Terikat, Tak Senyawa", role: "Production Assistant", productionHouse: "SAE Indonesia", type: "Short Film" },
   { id: "f-23", title: "Sebelah Mata Eike", role: "Production Assistant", productionHouse: "SAE Indonesia", type: "Short Film" },
