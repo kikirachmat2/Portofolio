@@ -4,6 +4,7 @@ export interface ProjectVideo {
   platform: 'youtube' | 'tiktok' | 'instagram' | 'vimeo' | 'direct';
   url: string;
   label: string;
+  previewSrc?: string;
 }
 
 export interface Project {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Project } from '@/types/portfolio';
 import { X, Images, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import VideoPreviewPopup from './VideoPreviewPopup';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -18,7 +19,7 @@ function getYouTubeId(url: string): string | null {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeStillIdx, setActiveStillIdx] = useState<number | null>(null);
-  const [activeVideoEmbed, setActiveVideoEmbed] = useState<string | null>(null);
+  const [activeVideoIndex, setActiveVideoIndex] = useState<number | null>(null);
 
   // Close on escape key
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
       // Reset video state when a new project is opened
-      setActiveVideoEmbed(null);
+      setActiveVideoIndex(null);
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -78,17 +79,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           
           {/* Hero Media Layer: Video Loop, Active Online Video, or Poster */}
           <div className="w-full aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-black/80 relative border border-white/10 shadow-inner">
-            {activeVideoEmbed ? (
-              <div className="relative w-full h-full bg-black">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${activeVideoEmbed}?autoplay=1&modestbranding=1&rel=0`}
-                  title="Online Video Player"
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ) : project.previewVideoUrl ? (
+            {project.previewVideoUrl ? (
               <video
                 src={project.previewVideoUrl}
                 muted
@@ -167,40 +158,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <p className="text-[10px] font-mono uppercase tracking-widest text-gray-400 font-bold">
                     WATCH ONLINE ({project.videos.length} LINKS)
                   </p>
-                  {activeVideoEmbed && (
-                    <button
-                      onClick={() => setActiveVideoEmbed(null)}
-                      className="text-[10px] font-mono text-[#C84B2F] hover:underline uppercase tracking-wider"
-                    >
-                      Reset to Default Preview
-                    </button>
-                  )}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                   {project.videos.map((video, i) => {
                     const ytId = getYouTubeId(video.url);
-                    const isCurrentEmbed = activeVideoEmbed === ytId;
                     return (
                       <div
                         key={i}
                         className="min-w-0"
                       >
-                        {ytId ? (
+                        {true ? (
                           <button
                             type="button"
-                            onClick={() => setActiveVideoEmbed(isCurrentEmbed ? null : ytId)}
-                            className={`w-full inline-flex items-center justify-between gap-2 px-4 py-3 sm:py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md ${
-                              isCurrentEmbed
-                                ? 'bg-white text-black'
-                                : 'bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white shadow-[#C84B2F]/20'
-                            }`}
-                            aria-label={`${isCurrentEmbed ? 'Close' : 'Preview'} ${video.label}`}
+                            onClick={() => setActiveVideoIndex(i)}
+                            className="w-full inline-flex items-center justify-between gap-2 px-4 py-3 sm:py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md bg-[#C84B2F] hover:bg-[#D85A3F] active:scale-[0.98] text-white shadow-[#C84B2F]/20"
+                            aria-label={`Preview ${video.label}`}
                           >
                             <span className="inline-flex min-w-0 items-center gap-2">
                               <Play className="w-3.5 h-3.5 fill-current shrink-0" />
                               <span className="truncate">{video.label}</span>
                             </span>
-                            <ExternalLink className="w-3 h-3 opacity-60 shrink-0" />
+                            <Play className="w-3 h-3 fill-current opacity-80 shrink-0" />
                           </button>
                         ) : (
                           <a
@@ -297,6 +275,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         </div>
       </motion.div>
+
+      {activeVideoIndex !== null && project.videos[activeVideoIndex] && <VideoPreviewPopup videos={project.videos} index={activeVideoIndex} projectTitle={project.title} poster={project.posterUrl} onClose={() => setActiveVideoIndex(null)} onChange={setActiveVideoIndex} />}
 
       {/* High-Res Gallery Still Lightbox */}
       <AnimatePresence>
