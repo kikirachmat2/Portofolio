@@ -629,7 +629,7 @@ export const filmographyData: FilmographyEntry[] = [
   { id: "f-4", title: "Love, In a Falling Way", role: "Line Producer", productionHouse: "Seven Production, Karyakarsa", type: "Mini Series" },
   { id: "f-5", title: "Remedi", role: "Line Producer", productionHouse: "SAE Indonesia", type: "Short Film" },
   { id: "f-6", title: "A Girl's Bedroom", role: "Line Producer", productionHouse: "SAE Indonesia", type: "Short Film" },
-  { id: "f-7", title: "Neon Race", role: "Line Producer", productionHouse: "Neon Moon Film", type: "Short Film" },
+  { id: "f-7", title: "Neon Race", role: "Line Producer", productionHouse: "SAE Indonesia", type: "Short Film" },
   { id: "f-8", title: "Bintang Fajar", role: "Line Producer", productionHouse: "SAE Indonesia", type: "Short Film" },
   { id: "f-9", title: "Firasat - Selfi Yamma", role: "Line Producer", productionHouse: "Seven Production, Sunyata Studio", type: "Music Video" },
   // === UNIT PRODUCTION MANAGER ===

@@ -74,7 +74,7 @@ export async function GET() {
         description: r.description?.trim() || fallback?.description || 'Repository project by Fikri Mulya Rachmat.',
         language: r.language || fallback?.language || 'Code',
         html_url: r.html_url || fallback?.html_url,
-        homepage: (r.homepage && r.homepage.trim() !== '') ? r.homepage.trim() : (fallback?.homepage || null),
+        homepage: fallback?.homepage ?? ((r.homepage && r.homepage.trim() !== '') ? r.homepage.trim() : null),
         updated_at: r.updated_at || fallback?.updated_at,
         tags: r.topics?.length ? r.topics : (fallback?.tags || [r.language || 'Code'])
       };
