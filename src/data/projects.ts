@@ -91,7 +91,6 @@ export const projects: Project[] = [
     role: "Production Team / Unit",
     description: "Program infotainment harian unggulan TRANS TV yang menghadirkan liputan eksklusif selebritas dan dinamika industri hiburan tanah air. Tayang reguler dengan format Insert Pagi, Siang, Today, dan Story.",
     posterUrl: "/assets/projects/insert-transtv-reguler/INSERT.png",
-    previewVideoUrl: "/assets/projects/insert-transtv-reguler/YTDown.com_YouTube_Media_92hW5Bcn1hI_Hampir-Usia-46-Tahun-Samuel-Rizal-Bingung-Ditanya-Tips-Awet-Muda_001_1080p.mp4",
     externalUrl: "https://youtu.be/92hW5Bcn1hI?si=UR-s6vKJigenvAOm",
     externalPlatform: "youtube",
     featured: true,

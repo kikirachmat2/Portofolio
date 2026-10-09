@@ -35,6 +35,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     if (project) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+      // Reset video state when a new project is opened
+      setHoveredVideo(null);
+      setActiveVideoEmbed(null);
     }
     return () => {
       document.body.style.overflow = 'unset';
